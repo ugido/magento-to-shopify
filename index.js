@@ -149,7 +149,7 @@ async function processMagentoCategory(category){
 
     for(var i = 0; i< children_data.length; i++){
         await processMagentoCategory(children_data[i]);
-        sleep(2000);
+        await sleep(2000);
     }
 }
 
@@ -254,7 +254,7 @@ async function getShopifyProducts(link = null, perPage = 250){
     if(link){
         var links = parseLinkHeader(link);
         if(links.next){
-            sleep(2000);
+            await sleep(2000);
             await getShopifyProducts(links.next);
         }
         //console.log('link: ', links.next);
@@ -301,7 +301,7 @@ async function processMagentoProducts(products){
         var product = await getMagentoData(`products/${products[i].sku}`);
 
         await updateShopifyProductData(product, i);
-        sleep(2000);
+        await sleep(2000);
     }
 }
 
